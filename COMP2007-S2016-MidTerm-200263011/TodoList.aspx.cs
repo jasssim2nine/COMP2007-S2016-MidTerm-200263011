@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+//using statements to connect ef
 using COMP2007_S2016_MidTerm_200263011.Models;
 using System.Web.ModelBinding;
 using System.Linq.Dynamic;
@@ -31,7 +31,7 @@ namespace COMP2007_S2016_MidTerm_200263011
                 if(!IsPostBack)
             {
                 //create a session variable and stored as default
-                Session["SortColumn"] = "DepartmentID";
+                Session["SortColumn"] = "TodoID";
                 Session["SortDirection"] = "ASC";
                 this.GetTodoList();
             }
@@ -51,9 +51,11 @@ namespace COMP2007_S2016_MidTerm_200263011
         {
             using (TodoConnection tbc = new TodoConnection())
             {
-                var toDo = (from allList in tbc.Todos
+                string SortString = Session["SortColumn"].ToString() + " " + Session["SortDirection"].ToString();
+
+                var ToDo = (from allList in tbc.Todos
                                    select allList);
-                ToDoListGridView.DataSource = toDo.ToList();
+                ToDoListGridView.DataSource = ToDo.AsQueryable().OrderBy(SortString).ToList();
                 ToDoListGridView.DataBind();
             }
         }
@@ -163,7 +165,7 @@ namespace COMP2007_S2016_MidTerm_200263011
 
                     for (int index = 0; index < ToDoListGridView.Columns.Count - 1; index++)
                     {
-                        if (ToDoList    GridView.Columns[index].SortExpression == Session["SortColumn"].ToString())
+                        if (ToDoListGridView.Columns[index].SortExpression == Session["SortColumn"].ToString())
                         {
                             if (Session["SortDirection"].ToString() == "ASC")
                             {

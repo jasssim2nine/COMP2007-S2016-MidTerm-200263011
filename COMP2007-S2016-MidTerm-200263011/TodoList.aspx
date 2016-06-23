@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="Todo List" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TodoList.aspx.cs" Inherits="COMP2007_S2016_MidTerm_200263011.TodoList" %>
 
+<%--
+    Author Name : Jasim Khan
+    student id : 200263011
+    date : 13-06-16
+    description : TodoList page to display the woks to do.
+      --%>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="row">
@@ -19,15 +25,15 @@
 
     <asp:GridView ID="ToDoListGridView" CssClass="table table-bordered table-striped table-hover" AutoGenerateColumns="false" 
          DataKeyNames="TodoID" OnRowDeleting="ToDoListGridView_RowDeleting" AllowPaging="true" PageSize="3"
-         OnPageIndexChanging="ToDoListGridView_PageIndexChanging" OnSorting="ToDoListGridView_Sorting"
+         OnPageIndexChanging="ToDoListGridView_PageIndexChanging" AllowSorting="true" OnSorting="ToDoListGridView_Sorting"
          OnRowDataBound="ToDoListGridView_RowDataBound" PagerStyle-CssClass="pagination-ys"
          runat="server">
         <Columns>
             <asp:BoundField  DataField="TodoID" HeaderText="TodoID" Visible="false" />
-            <asp:BoundField  DataField="TodoName" HeaderText="Todo" Visible="true" SortExpression="TodoNames"/>
+            <asp:BoundField  DataField="TodoName" HeaderText="To do" Visible="true" SortExpression="TodoName"/>
             <asp:BoundField  DataField="TodoNotes" HeaderText="Notes" Visible="true" SortExpression="TodoNotes"/>
             <asp:BoundField DataField="Completed" HeaderText="Completed" Visible="false"/>
-            <asp:CheckBoxField DataField="Completed" HeaderText="Completed" Visible="true" />
+            <asp:CheckBoxField DataField="Completed" HeaderText="Completed" Visible="true" SortExpression="Completed" />
             <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'/> Edit"
                   navigateurl="~/TodoDetails.aspx" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server" 
                   DataNavigateUrlFields="TodoID" DataNavigateUrlFormatString="TodoDetails.aspx?TodoID={0}"
