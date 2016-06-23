@@ -18,7 +18,7 @@
                   </div>
 
     <asp:GridView ID="ToDoListGridView" CssClass="table table-bordered table-striped table-hover" AutoGenerateColumns="false" 
-         DataKeyNames="TodoID"
+         DataKeyNames="TodoID" OnRowDeleting="ToDoListGridView_RowDeleting"
          runat="server">
         <Columns>
             <asp:BoundField  DataField="TodoID" HeaderText="TodoID" Visible="false"/>

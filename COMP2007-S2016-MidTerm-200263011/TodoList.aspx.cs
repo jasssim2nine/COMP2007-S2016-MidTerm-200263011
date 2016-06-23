@@ -71,5 +71,38 @@ namespace COMP2007_S2016_MidTerm_200263011
             //refresh the grid
             this.GetTodoList();
         }
+
+        /// <summary>
+        /// This handler deletes the department using EF 
+        /// @Param (object) sender
+        /// @Param (GridViewDeleteEventArgs) e
+        /// @returns (void)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ToDoListGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //store the row which is clicked
+            int selectedRow = e.RowIndex;
+
+            //get the selected department id using department datakey 
+            int TodoID = Convert.ToInt32(ToDoListGridView.DataKeys[selectedRow].Values["TodoID"]);
+            // using ef to find the selected department 
+            using (TodoConnection tdc = new TodoConnection())
+            {
+                //create object of department class and store the query
+                Todo deletedrecord = (from todorecord in tdc.Todos
+                                      where todorecord.TodoID == TodoID
+                                      select todorecord).FirstOrDefault();
+
+                //remove the selected todo from the db
+                tdc.Todos.Remove(deletedrecord);
+                // save my changes back to the database
+                tdc.SaveChanges();
+
+                //refresh the grid
+                this.GetTodoList();
+            }
+        }
     }
 }
