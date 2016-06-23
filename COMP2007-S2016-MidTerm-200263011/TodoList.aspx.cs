@@ -30,6 +30,9 @@ namespace COMP2007_S2016_MidTerm_200263011
         {
                 if(!IsPostBack)
             {
+                //create a session variable and stored as default
+                Session["SortColumn"] = "DepartmentID";
+                Session["SortDirection"] = "ASC";
                 this.GetTodoList();
             }
         }
@@ -103,6 +106,80 @@ namespace COMP2007_S2016_MidTerm_200263011
                 //refresh the grid
                 this.GetTodoList();
             }
+        }
+
+        /// <summary>
+        /// This handler takes care of paging
+        /// </summary>
+        /// @Param (object) sender
+        /// @Param (GridViewPageEventArgs) e
+        /// @returns (void)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ToDoListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //set the new page number
+            ToDoListGridView.PageIndex = e.NewPageIndex;
+
+            //refresh the grid
+            this.GetTodoList();
+        }
+
+        /// <summary>
+        /// This handler handles sorting
+        /// </summary>
+        /// @Param (object) sender
+        /// @Param (GridViewSotEventArgs) e
+        /// @returns (void)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ToDoListGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            //get the column to sort by
+            Session["SortColumn"] = e.SortExpression;
+
+            //refresh the grid
+            this.GetTodoList();
+
+            //create a toggle for the direction
+            Session["SortDirection"] = Session["SortDirection"].ToString() == "ASC" ? "DESC" : "ASC";
+        }
+
+        /// <summary>
+        /// This method adds the caret to the headers of the table..
+        /// </summary>
+        /// @Param (object) sender
+        /// @Param (GridViewRowEventArgs) e
+        /// @Param (void)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ToDoListGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                if (e.Row.RowType == DataControlRowType.Header) // if header row has been clicked
+                {
+                    LinkButton linkbutton = new LinkButton();
+
+                    for (int index = 0; index < ToDoListGridView.Columns.Count - 1; index++)
+                    {
+                        if (ToDoList    GridView.Columns[index].SortExpression == Session["SortColumn"].ToString())
+                        {
+                            if (Session["SortDirection"].ToString() == "ASC")
+                            {
+                                linkbutton.Text = " <i class='fa fa-caret-up fa-lg'></i>";
+                            }
+                            else
+                            {
+                                linkbutton.Text = " <i class='fa fa-caret-down fa-lg'></i>";
+                            }
+
+                            e.Row.Cells[index].Controls.Add(linkbutton);
+                        }
+                    }
+                }
+            }
+
         }
     }
 }

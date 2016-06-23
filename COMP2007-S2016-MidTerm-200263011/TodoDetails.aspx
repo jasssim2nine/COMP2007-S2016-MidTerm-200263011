@@ -20,7 +20,10 @@
                     <label class="control-label" for="TodoNotesTextBox">Todo Name</label>
                     <asp:TextBox runat="server" CssClass="form-control" ID="TodoNotesTextBox" placeholder="Todo Notes" required="true"></asp:TextBox>
                 </div>
-
+                    <div class="form-group">
+                    <label class="control-label" for="CompletedCheckBox">Completed</label>
+                    <asp:CheckBox runat="server"  ID="CompletedCheckBox" required="true"></asp:CheckBox>
+                    </div>
 
                 <asp:Button Text="Cancel" ID="CancelButton" CssClass="btn btn-warning btn-lg" runat="server" 
                         UseSubmitBehavior="false" CausesValidation="false" OnClick="CancelButton_Click" />

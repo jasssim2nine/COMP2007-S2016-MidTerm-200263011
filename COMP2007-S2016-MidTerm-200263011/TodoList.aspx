@@ -18,15 +18,19 @@
                   </div>
 
     <asp:GridView ID="ToDoListGridView" CssClass="table table-bordered table-striped table-hover" AutoGenerateColumns="false" 
-         DataKeyNames="TodoID" OnRowDeleting="ToDoListGridView_RowDeleting"
+         DataKeyNames="TodoID" OnRowDeleting="ToDoListGridView_RowDeleting" AllowPaging="true" PageSize="3"
+         OnPageIndexChanging="ToDoListGridView_PageIndexChanging" OnSorting="ToDoListGridView_Sorting"
+         OnRowDataBound="ToDoListGridView_RowDataBound" PagerStyle-CssClass="pagination-ys"
          runat="server">
         <Columns>
-            <asp:BoundField  DataField="TodoID" HeaderText="TodoID" Visible="false"/>
-            <asp:BoundField  DataField="TodoName" HeaderText="Todo" Visible="true"/>
-            <asp:BoundField  DataField="TodoNotes" HeaderText="Notes" Visible="true"/>
+            <asp:BoundField  DataField="TodoID" HeaderText="TodoID" Visible="false" />
+            <asp:BoundField  DataField="TodoName" HeaderText="Todo" Visible="true" SortExpression="TodoNames"/>
+            <asp:BoundField  DataField="TodoNotes" HeaderText="Notes" Visible="true" SortExpression="TodoNotes"/>
+            <asp:BoundField DataField="Completed" HeaderText="Completed" Visible="false"/>
+            <asp:CheckBoxField DataField="Completed" HeaderText="Completed" Visible="true" />
             <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'/> Edit"
                   navigateurl="~/TodoDetails.aspx" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server" 
-                  DataNavigateUrlFields="TodoID" DataNavigateUrlFormatString="TodoDetails.aspx?DepartmentID={0}"
+                  DataNavigateUrlFields="TodoID" DataNavigateUrlFormatString="TodoDetails.aspx?TodoID={0}"
                                />
             <asp:CommandField HeaderText="Delete" DeleteText="<i class='fa fa-trash-o fa-lg'/>Delete"
                               ShowDeleteButton="true" ButtonType="Link" ControlStyle-CssClass="btn btn-danger btn-sm" />

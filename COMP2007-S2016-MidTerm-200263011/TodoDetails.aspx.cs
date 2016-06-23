@@ -16,7 +16,7 @@ namespace COMP2007_S2016_MidTerm_200263011
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if ((!IsPostBack) && (Request.QueryString.Count > 0))
             {
                 this.GetTodoList();
             }
