@@ -3,7 +3,7 @@
     Author Name : Jasim Khan
     student id : 200263011
     date : 13-06-16
-    description : DepartmentDetails page to add & edit the different departments..
+    description : Detailed page to add & edit the different todo items..
       --%>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
@@ -30,9 +30,6 @@
 
                    <asp:Button Text="Save" ID="SaveButton" CssClass="btn btn-primary btn-lg" runat="server"
                         OnClick="SaveButton_Click" />
-
-
-
             </div>
         </div>
     </div>

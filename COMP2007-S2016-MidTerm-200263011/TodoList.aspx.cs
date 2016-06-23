@@ -52,9 +52,10 @@ namespace COMP2007_S2016_MidTerm_200263011
             using (TodoConnection tbc = new TodoConnection())
             {
                 string SortString = Session["SortColumn"].ToString() + " " + Session["SortDirection"].ToString();
-
+                // query the Todo Table using EF and LINQ
                 var ToDo = (from allList in tbc.Todos
                                    select allList);
+                //binding the data
                 ToDoListGridView.DataSource = ToDo.AsQueryable().OrderBy(SortString).ToList();
                 ToDoListGridView.DataBind();
             }
@@ -78,7 +79,7 @@ namespace COMP2007_S2016_MidTerm_200263011
         }
 
         /// <summary>
-        /// This handler deletes the department using EF 
+        /// This handler deletes the todo using EF 
         /// @Param (object) sender
         /// @Param (GridViewDeleteEventArgs) e
         /// @returns (void)
@@ -90,12 +91,12 @@ namespace COMP2007_S2016_MidTerm_200263011
             //store the row which is clicked
             int selectedRow = e.RowIndex;
 
-            //get the selected department id using department datakey 
+            //get the selected todo id using todoid datakey 
             int TodoID = Convert.ToInt32(ToDoListGridView.DataKeys[selectedRow].Values["TodoID"]);
             // using ef to find the selected department 
             using (TodoConnection tdc = new TodoConnection())
             {
-                //create object of department class and store the query
+                //create object of todo class and store the query
                 Todo deletedrecord = (from todorecord in tdc.Todos
                                       where todorecord.TodoID == TodoID
                                       select todorecord).FirstOrDefault();

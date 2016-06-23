@@ -12,7 +12,9 @@
              <div class="col-md-offset-2 col-md-8">
                  <h1>Todo List</h1>
                     <a href="TodoDetails.aspx" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Todo</a>
-                   <div>
+                   
+                 <!-- Paging -->
+                 <div>
                   <label for="PageSizeDropDownList"> Records Per Page: </label>
                 <asp:DropDownList ID="PageSizeDropDownList" runat="server"
                      AutoPostBack="true" CssClass="btn btn-default btn-sm dropdown-toggle"
@@ -45,13 +47,9 @@
             <asp:CommandField HeaderText="Delete" DeleteText="<i class='fa fa-trash-o fa-lg'/>Delete"
                               ShowDeleteButton="true" ButtonType="Link" ControlStyle-CssClass="btn btn-danger btn-sm" />
             
-        </Columns>
-        
+        </Columns>    
         </asp:GridView>
-
-
-
       </div>
-        </div>
-    </div>
+   </div>
+ </div>
 </asp:Content>
