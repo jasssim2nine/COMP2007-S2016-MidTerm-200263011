@@ -22,7 +22,7 @@
                 </div>
                     <div class="form-group">
                     <label class="control-label" for="CompletedCheckBox">Completed</label>
-                    <asp:CheckBox runat="server"  ID="CompletedCheckBox" required="true"></asp:CheckBox>
+                    <asp:CheckBox runat="server"   ID="CompletedCheckBox" required="true"></asp:CheckBox>
                     </div>
 
                 <asp:Button Text="Cancel" ID="CancelButton" CssClass="btn btn-warning btn-lg" runat="server" 

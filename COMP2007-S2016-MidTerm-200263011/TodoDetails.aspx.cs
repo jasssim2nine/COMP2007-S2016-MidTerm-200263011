@@ -36,6 +36,7 @@ namespace COMP2007_S2016_MidTerm_200263011
                 {
                     TodoNameTextBox.Text = updatedList.TodoName;
                     TodoNotesTextBox.Text = updatedList.TodoNotes;
+                    CompletedCheckBox.Checked = updatedList.Completed.Value;
                 }
             }
   
@@ -82,12 +83,13 @@ namespace COMP2007_S2016_MidTerm_200263011
                 }
                 newTodo.TodoName = TodoNameTextBox.Text;
                 newTodo.TodoNotes = TodoNotesTextBox.Text;
-
-                if(TodoID == 0)
+                newTodo.Completed = CompletedCheckBox.Checked;
+                
+                if (TodoID == 0)
                 {
                     tdc.Todos.Add(newTodo);
                 }
-
+                
                 tdc.SaveChanges();
                 Response.Redirect("~/TodoList.aspx");
             }

@@ -33,7 +33,11 @@
             <asp:BoundField  DataField="TodoName" HeaderText="To do" Visible="true" SortExpression="TodoName"/>
             <asp:BoundField  DataField="TodoNotes" HeaderText="Notes" Visible="true" SortExpression="TodoNotes"/>
             <asp:BoundField DataField="Completed" HeaderText="Completed" Visible="false"/>
-            <asp:CheckBoxField DataField="Completed" HeaderText="Completed" Visible="true" SortExpression="Completed" />
+            <asp:TemplateField>
+                <ItemTemplate>
+            <asp:CheckBox DataField="Completed" HeaderText="Completed" SortExpression="Completed" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'/> Edit"
                   navigateurl="~/TodoDetails.aspx" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server" 
                   DataNavigateUrlFields="TodoID" DataNavigateUrlFormatString="TodoDetails.aspx?TodoID={0}"
