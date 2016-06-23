@@ -20,7 +20,12 @@ namespace COMP2007_S2016_MidTerm_200263011
     {
 
 
-
+        /// <summary>
+        /// This method kicks off when page loads.
+        /// </summary>
+        /// @Param (object) sender
+        /// @Param (EventArgs) e
+        /// @returns (void)
         protected void Page_Load(object sender, EventArgs e)
         {
                 if(!IsPostBack)
@@ -29,6 +34,16 @@ namespace COMP2007_S2016_MidTerm_200263011
             }
         }
 
+
+        /// <summary>
+        /// This method connects to db and creates a query.
+        /// </summary>
+        /// @Param () 
+        /// @method (GetTodoList) 
+        /// @returns (void)
+
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GetTodoList()
         {
             using (TodoConnection tbc = new TodoConnection())
@@ -41,7 +56,14 @@ namespace COMP2007_S2016_MidTerm_200263011
         }
 
 
-
+        /// <summary>
+        /// This handler set the no. of records to be displayed
+        /// </summary>
+        /// @Param (object) sender
+        /// @Param (EventArgs) e
+        /// @returns (void)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void PageSizeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //set the page size
